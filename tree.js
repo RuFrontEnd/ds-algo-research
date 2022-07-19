@@ -1,12 +1,6 @@
 const util = require("util");
 // binary tree => each node can only have zero or one or two tree node
 
-const binaryTree = (value) => {
-  this.value = value;
-  this.left = null;
-  this.right = null;
-};
-
 // level 0: 2^0 = 1;
 // level 1: 2^1 = 2;
 // level 2: 2^2 = 4;
@@ -35,7 +29,7 @@ class BinarySearchTree {
 
   insert(value) {
     const newNode = new Node(value);
-    console.log("newNode", newNode);
+
     if (this.root === null) {
       this.root = newNode;
     } else {
@@ -100,3 +94,7 @@ console.log(
 );
 
 console.log("--- lookup ---\n", tree.lookup(20));
+
+
+// Binary Heap => 
+
