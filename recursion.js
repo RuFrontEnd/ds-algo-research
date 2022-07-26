@@ -64,7 +64,7 @@ const fibonacci_recursive = (step) => {
     return step;
   }
   return fibonacci_recursive(step - 1) + fibonacci_recursive(step - 2);
-}; // time complexity O(2^n)
+}; // time complexity O(n)
 
 const fibonacci_loop = (step) => {
   let arr = [0, 1];
