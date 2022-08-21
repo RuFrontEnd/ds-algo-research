@@ -21,14 +21,24 @@ class Node {
     this.value = value;
   }
 }
+const newNode = new Node(1); // { left: null, right: null, value: value }
+// console.log(
+//   util.inspect(
+//     JSON.parse(JSON.stringify(newNode)),
+//     false,
+//     null,
+//     true /* enable colors */
+//   )
+// );
 
+// 左節點比父節點小, 右節點比父節點大
 class BinarySearchTree {
   constructor() {
     this.root = null;
   }
 
   insert(value) {
-    const newNode = new Node(value);
+    const newNode = new Node(value); // { left: null, right: null, value: value }
 
     if (this.root === null) {
       this.root = newNode;
@@ -93,8 +103,8 @@ console.log(
   )
 );
 
-console.log("--- lookup ---\n", tree.lookup(20));
+// console.log("--- lookup ---\n", tree.lookup(20));
 
+// Binary Heap =>
 
-// Binary Heap => 
-
+module.exports = { BinarySearchTree };

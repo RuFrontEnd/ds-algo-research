@@ -59,6 +59,29 @@ const selectionSort = (nums) => {
 
 // console.log(selectionSort(numbers));
 
-// Insertion Sort
+// Merge Sort
+
+const merge = (left, right) => {
+  const result = [];
+  let leffIndex = 0;
+  let rightIndex = 0;
+
+  // while(leffIndex)
+};
+
+const mergeSort = (nums) => {
+  if (array.length === 1) {
+    return arry;
+  }
+
+  const length = array.length;
+  const middle = Math.floor(length / 2);
+  const left = arrary.slice(0, middle);
+  const right = array.slice(middle);
+
+  return merge(mergeSort(left), mergeSort(right));
+};
 
 
+
+// console.log(mergeSort(numbers));
