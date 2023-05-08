@@ -41,26 +41,29 @@ class BinarySearchTree {
     const newNode = new Node(value); // { left: null, right: null, value: value }
 
     if (this.root === null) {
-      this.root = newNode;
+      // 如果 tree 還沒有根節點
+      this.root = newNode; // 則新 node 成為根節點
     } else {
-      let currentNode = this.root;
+      let currentNode = this.root; // 有根節點, 則起始 node 為根節點
       while (true) {
         // left
         if (value < currentNode.value) {
-          if (!currentNode.left) {
-            currentNode.left = newNode;
-            return this; // stop whie loop
+          // 新值比當前節點值還小
+          if (!currentNode.left) { // 左邊已經沒有節點的話
+            currentNode.left = newNode; // 新增新節點至左邊
+            return this; // stop whie loop & 回傳整顆樹
           }
-          currentNode = currentNode.left;
+          currentNode = currentNode.left; // 當前節點變成前一節點的子左節點
         }
 
         // right
         if (value >= currentNode.value) {
-          if (!currentNode.right) {
-            currentNode.right = newNode;
-            return this; // stop whie loop
+          // 新值比當前節點值還大
+          if (!currentNode.right) { // 右邊已經沒有節點的話
+            currentNode.right = newNode; // 新增新節點至右邊
+            return this; // stop whie loop & 回傳整顆樹
           }
-          currentNode = currentNode.right;
+          currentNode = currentNode.right; // 當前節點變成前一節點的子右節點
         }
       }
     }
