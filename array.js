@@ -16,7 +16,7 @@ class MyArray {
 }
 
 const newArray = new MyArray();
-console.log("newArray", typeof newArray);
+// console.log("newArray", typeof newArray);
 
 const originArray = new Array()
-console.log("originArray", originArray.proto);
+// console.log("originArray", originArray.proto);
