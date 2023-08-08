@@ -23,11 +23,20 @@ class LinkedList {
 
     push(value) {
         let newNode = new Node(value)
+        let currentNode = this.head
 
         if (this.head === null) {
             this.head = newNode
         } else {
-
+            while (true) {
+                if (currentNode.next === null) {
+                    currentNode.next = newNode
+                    break
+                    // return：直接跳出函式，不會繼續執行迴圈外的程式。 
+                    // break：直接跳出迴圈後，會繼續執行迴圈外的程式
+                }
+                currentNode = currentNode.next
+            }
         }
 
         this.length++
@@ -35,6 +44,9 @@ class LinkedList {
 }
 
 let myLinkedList = new LinkedList()
-// myLinkedList.push("Mike")
+myLinkedList.push("Mike")
+myLinkedList.push("Harry")
+myLinkedList.push("Jenny")
+console.log('myLinkedList', myLinkedList)
 
 
