@@ -85,24 +85,18 @@ class LinkedList {
     }
 
     unShift(value) {
+        let newNode = new Node(value)
+        let createNode = cloneDeep(newNode)
         if (this.head === null) {
-            this.head = new Node(value)
-            return null
-        }
-        // else if (this.head.length === 1) {
-        //     let temp = this.head
-        //     temp.next = null
-        //     this.head === null
-        //     this.length = 0
-        //     return temp
-        // } 
-        else {
+            this.head = newNode
+        } else {
             let temp = this.head
-            let newNode = new Node(value)
             this.head = newNode
             this.head.next = temp
         }
+
         this.length++
+        return createNode
     }
 }
 
@@ -139,8 +133,8 @@ let shiftValue = myLinkedList_2.shift()
 let myLinkedList_3 = new LinkedList()
 myLinkedList_3.push("Harry")
 myLinkedList_3.push("Jenny")
-myLinkedList_3.unShift('Mike')
-// console.log('shiftValue', shiftValue)
+let unShiftValue = myLinkedList_3.unShift('Mike')
+console.log('unShiftValue', unShiftValue)
 console.log(
     util.inspect(
         JSON.parse(JSON.stringify(myLinkedList_3)),
