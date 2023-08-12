@@ -1,3 +1,4 @@
+const util = require("util");
 // 1. nonsequential memory location.
 // 2. only contains head & length property.
 // 3. consists of nodes, each node has a value point to another node.
@@ -41,12 +42,43 @@ class LinkedList {
 
         this.length++
     }
+
+    pop() {
+        if (this.head === null) { return null }
+        else if (this.length === 1) {
+            let temp = this.head
+            this.head === null
+            this.length = 0
+            return temp
+        } else {
+            let currentNode = this.head,
+                currentIndex = 1
+
+            while (currentIndex !== this.length - 1) {
+                currentNode = currentNode.next
+                currentIndex++
+            }
+            let temp = currentNode.next
+            currentNode.next = null
+            this.length--
+            return temp
+        }
+    }
 }
 
 let myLinkedList = new LinkedList()
 myLinkedList.push("Mike")
 myLinkedList.push("Harry")
 myLinkedList.push("Jenny")
-console.log('myLinkedList', myLinkedList)
+let popValue = myLinkedList.pop()
+console.log('popValue', popValue)
+console.log(
+    util.inspect(
+        JSON.parse(JSON.stringify(myLinkedList)),
+        false,
+        null,
+        true /* enable colors */
+    )
+);
 
 
