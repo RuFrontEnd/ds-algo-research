@@ -1,4 +1,5 @@
 const util = require("util");
+const cloneDeep = require('lodash/cloneDeep')
 // 1. nonsequential memory location.
 // 2. only contains head & length property.
 // 3. consists of nodes, each node has a value point to another node.
@@ -64,6 +65,45 @@ class LinkedList {
             return temp
         }
     }
+
+    shift() {
+        if (this.head === null) {
+            return null
+        } else if (this.head.length === 1) {
+            let temp = this.head
+            temp.next = null
+            this.head === null
+            this.length = 0
+            return temp
+        } else {
+            let temp = cloneDeep(this.head)
+            temp.next = null
+            this.head = this.head.next
+            this.length--
+            return temp
+        }
+    }
+
+    unShift(value) {
+        if (this.head === null) {
+            this.head = new Node(value)
+            return null
+        }
+        // else if (this.head.length === 1) {
+        //     let temp = this.head
+        //     temp.next = null
+        //     this.head === null
+        //     this.length = 0
+        //     return temp
+        // } 
+        else {
+            let temp = this.head
+            let newNode = new Node(value)
+            this.head = newNode
+            this.head.next = temp
+        }
+        this.length++
+    }
 }
 
 let myLinkedList = new LinkedList()
@@ -71,14 +111,68 @@ myLinkedList.push("Mike")
 myLinkedList.push("Harry")
 myLinkedList.push("Jenny")
 let popValue = myLinkedList.pop()
-console.log('popValue', popValue)
+// console.log('popValue', popValue)
+// console.log(
+//     util.inspect(
+//         JSON.parse(JSON.stringify(myLinkedList)),
+//         false,
+//         null,
+//         true /* enable colors */
+//     )
+// );
+
+let myLinkedList_2 = new LinkedList()
+myLinkedList_2.push("Mike")
+myLinkedList_2.push("Harry")
+myLinkedList_2.push("Jenny")
+let shiftValue = myLinkedList_2.shift()
+// console.log('shiftValue', shiftValue)
+// console.log(
+//     util.inspect(
+//         JSON.parse(JSON.stringify(myLinkedList_2)),
+//         false,
+//         null,
+//         true /* enable colors */
+//     )
+// );
+
+let myLinkedList_3 = new LinkedList()
+myLinkedList_3.push("Harry")
+myLinkedList_3.push("Jenny")
+myLinkedList_3.unShift('Mike')
+// console.log('shiftValue', shiftValue)
 console.log(
     util.inspect(
-        JSON.parse(JSON.stringify(myLinkedList)),
+        JSON.parse(JSON.stringify(myLinkedList_3)),
         false,
         null,
         true /* enable colors */
     )
 );
+
+
+
+// extra => object call by reference
+
+const obj_1 = {
+    value: 1,
+    next: 'next node'
+}
+
+let obj1_var = obj_1
+
+obj1_var.next = null
+
+const obj_2 = {
+    value: 1,
+    next: 'next node'
+}
+
+let obj2_var = obj_2
+
+obj_2.next = null
+
+// console.log('obj_1', obj_1)
+// console.log('obj2_var', obj2_var)
 
 
