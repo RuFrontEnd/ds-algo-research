@@ -30,14 +30,14 @@ class LinkedList {
         if (this.head === null) {
             this.head = newNode
         } else {
-            while (true) {
+            while (true) { // search O(n)
                 if (currentNode.next === null) {
                     currentNode.next = newNode
                     break
                     // return：直接跳出函式，不會繼續執行迴圈外的程式。 
                     // break：直接跳出迴圈後，會繼續執行迴圈外的程式
                 }
-                currentNode = currentNode.next
+                currentNode = currentNode.next // insert O(1)
             }
         }
 
