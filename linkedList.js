@@ -121,6 +121,29 @@ class LinkedList {
     currentNode.next = newNode;
     this.length++;
   }
+
+  removeAt(index) {
+    if (this.head === null || index < 0) {
+      return null;
+    } else if (index === 0) {
+      return this.shift();
+    } else if (index === this.length) {
+      return this.pop();
+    }
+
+    let currentNode = this.head,
+      currentI = 0;
+
+    while (currentI !== index) {
+      currentNode = currentNode.next;
+      currentI++;
+    }
+
+    let temp = currentNode.next;
+    currentNode.next = currentNode.next.next;
+    this.length--;
+    return temp;
+  }
 }
 
 let myLinkedList = new LinkedList();
@@ -172,9 +195,23 @@ myLinkedList_4.push("Mike");
 myLinkedList_4.push("Harry");
 myLinkedList_4.push("Jenny");
 myLinkedList_4.insertAt(0, "Rayne");
+// console.log(
+//   util.inspect(
+//     JSON.parse(JSON.stringify(myLinkedList_4)),
+//     false,
+//     null,
+//     true /* enable colors */
+//   )
+// );
+
+let myLinkedList_5 = new LinkedList();
+myLinkedList_5.push("Mike");
+myLinkedList_5.push("Harry");
+myLinkedList_5.push("Jenny");
+myLinkedList_5.removeAt(1);
 console.log(
   util.inspect(
-    JSON.parse(JSON.stringify(myLinkedList_4)),
+    JSON.parse(JSON.stringify(myLinkedList_5)),
     false,
     null,
     true /* enable colors */
@@ -185,21 +222,28 @@ console.log(
 
 const obj_1 = {
   value: 1,
-  next: "next node",
+  next: {
+    value: 2,
+    next: null,
+  },
 };
 
-let obj1_var = obj_1;
+let obj_1_var = obj_1;
 
-obj1_var.next = null;
+obj_1_var.next = null;
+
+// console.log("obj_1", obj_1);
 
 const obj_2 = {
   value: 1,
-  next: "next node",
+  next: {
+    value: 2,
+    next: null,
+  },
 };
 
-let obj2_var = obj_2;
+let obj_2_var = obj_2;
 
 obj_2.next = null;
 
-// console.log('obj_1', obj_1)
-// console.log('obj2_var', obj2_var)
+// console.log("obj_2_var", obj_2_var);
