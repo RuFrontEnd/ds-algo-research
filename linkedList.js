@@ -144,6 +144,19 @@ class LinkedList {
     this.length--;
     return temp;
   }
+
+  get(index) {
+    if (index > this.length || index < 0) return null;
+    let currentNode = this.head,
+      currentI = 0;
+
+    while (currentI !== index) {
+      currentNode = currentNode.next;
+      currentI++;
+    }
+
+    return currentNode.value;
+  }
 }
 
 let myLinkedList = new LinkedList();
@@ -209,14 +222,21 @@ myLinkedList_5.push("Mike");
 myLinkedList_5.push("Harry");
 myLinkedList_5.push("Jenny");
 myLinkedList_5.removeAt(1);
-console.log(
-  util.inspect(
-    JSON.parse(JSON.stringify(myLinkedList_5)),
-    false,
-    null,
-    true /* enable colors */
-  )
-);
+// console.log(
+//   util.inspect(
+//     JSON.parse(JSON.stringify(myLinkedList_5)),
+//     false,
+//     null,
+//     true /* enable colors */
+//   )
+// );
+
+let myLinkedList_6 = new LinkedList();
+myLinkedList_6.push("Mike");
+myLinkedList_6.push("Harry");
+myLinkedList_6.push("Jenny");
+myLinkedList_6.get(1);
+console.log(myLinkedList_6.get(0));
 
 // extra => object call by reference
 
