@@ -9,6 +9,20 @@ const cloneDeep = require("lodash/cloneDeep");
 // 2. very fast insertion and deletion compared to array.
 
 // disadvantages
+// 1. take more memory to store because of their pointer(point to next value).
+// 2. nodes must read in order from beginning, because it is a sequential access.
+// 3. nodes are stored noncontiguos, it requires more time to access individual elements.
+// 4. hard to reverse.
+
+// linkedList v.s. array
+// linkedList
+//  1. does not have indices(index numbers).
+//  2. connection between nodes are a "next" pointer.
+//  3. random access is not allowed. (must go throw each node)
+// array
+//  1. items are indexed in order.
+//  2. insertion and deletion are expensive.
+//  3. elements can quickly be accessed with a specific index.
 
 class Node {
   constructor(value) {
