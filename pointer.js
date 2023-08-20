@@ -32,7 +32,8 @@ function averagePair_counter(arr, avg) {
 console.log(averagePair_counter(numbers, average));
 
 // pointer
-function averagePair_pointer(arr, avg) { // the arra must be sorted
+function averagePair_pointer(arr, avg) {
+  // the arra must be sorted
   let left = 0,
     right = arr.length - 1,
     pairs = [];
@@ -55,18 +56,35 @@ function averagePair_pointer(arr, avg) { // the arra must be sorted
 
 console.log(averagePair_pointer(numbers, average));
 
-
 //   *                          *
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // (-11 + 21) / 2 > 1.5
-//   *                      *   
+//   *                      *
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // (-11 + 17) / 2 > 1.5
-//   *                  *      
+//   *                  *
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // (-11 + 14) / 2 === 1.5
-//       *           *      
+//       *           *
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // (0 + 9) / 2 > 1.5
-//       *        *        
+//       *        *
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // (0 + 3) / 2 === 1.5
-//          *  *        
+//          *  *
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // (1 + 2) / 2 === 1.5
-//          *R *L        
+//          *R *L
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // left > right stop while loop
+
+// write a function that checks if the input string is a palindrome. Palindrome is a word that can be read forwards and backwards.
+
+function palindrome(string) {
+  let i = 0,
+    j = string.length - 1;
+
+  while (i < j) {
+    if (string[i] !== string[j]) return false;
+    i++;
+    j--;
+  }
+
+  return true;
+}
+
+console.log(palindrome("tacocat"));
+console.log(palindrome("foobar"));
