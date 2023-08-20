@@ -54,7 +54,7 @@ function averagePair_pointer(arr, avg) {
   return pairs;
 }
 
-console.log(averagePair_pointer(numbers, average));
+// console.log(averagePair_pointer(numbers, average));
 
 //   *                          *
 // [-11, 0, 1, 2, 3, 9, 14, 17, 21] // (-11 + 21) / 2 > 1.5
@@ -86,5 +86,31 @@ function palindrome(string) {
   return true;
 }
 
-console.log(palindrome("tacocat"));
-console.log(palindrome("foobar"));
+// console.log(palindrome("tacocat"));
+// console.log(palindrome("foobar"));
+
+// subsepqunce problem
+// A subsequnece of a string is a new string that is formed from the original string by deleting some(can be none) of the characters without disturbing the relative positions of the remaning characters.
+
+function isSubsepqunce(string, sentence) {
+  if (string.length > sentence || string.length === 0) return false;
+  let i = 0,
+    j = 0;
+
+  while (j < sentence.length) {
+    if (i === string.length) return true;
+    if (string[i] === sentence[j]) {
+      i++;
+    }
+
+    j++;
+  }
+
+  return false;
+}
+
+// console.log(isSubsepqunce("hello", "hello Dear"));
+// console.log(isSubsepqunce("book", "brooklyn"));
+// console.log(isSubsepqunce("abc", "bac"));
+// console.log(isSubsepqunce("abcdef", "abc"));
+// console.log(isSubsepqunce("", "abc"));
