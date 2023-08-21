@@ -1,4 +1,5 @@
 // Buble Sort
+// compare adjecent elements and swaps them if they are in the wrong order.
 
 const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 
@@ -32,7 +33,27 @@ const bubbleSort = (array) => {
   return sort(array);
 };
 
-// console.log(bubbleSort(numbers));
+bubbleSort(numbers);
+
+// O(N^2)
+function bubbleSort_loop(arr) {
+  let step = 0;
+  for (let i = 0; i <= arr.length - 2; i++) {
+    for (let j = arr.length - 1; j >= i + 1; j--) {
+      if (arr[j] < arr[j - 1]) {
+        // swap arr[j] and arr[j - 1]
+        let temp = arr[j];
+        arr[j] = arr[j - 1];
+        arr[j - 1] = temp;
+        step++;
+      }
+    }
+  }
+  console.log("It takes " + step + " steps to complete.");
+  console.log(arr);
+}
+
+// console.log(bubbleSort_loop(numbers));
 
 // Selection Sort
 
