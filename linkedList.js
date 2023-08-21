@@ -1,4 +1,3 @@
-const util = require("util");
 const cloneDeep = require("lodash/cloneDeep");
 // 1. nonsequential memory location.
 // 2. only contains head & length property.
@@ -9,6 +8,20 @@ const cloneDeep = require("lodash/cloneDeep");
 // 2. very fast insertion and deletion compared to array.
 
 // disadvantages
+// 1. take more memory to store because of their pointer(point to next value).
+// 2. nodes must read in order from beginning, because it is a sequential access.
+// 3. nodes are stored noncontiguos, it requires more time to access individual elements.
+// 4. hard to reverse.
+
+// linkedList v.s. array
+// linkedList
+//  1. does not have indices(index numbers).
+//  2. connection between nodes are a "next" pointer.
+//  3. random access is not allowed. (must go throw each node)
+// array
+//  1. items are indexed in order.
+//  2. insertion and deletion are expensive.
+//  3. elements can quickly be accessed with a specific index.
 
 class Node {
   constructor(value) {
@@ -159,111 +172,4 @@ class LinkedList {
   }
 }
 
-let myLinkedList = new LinkedList();
-myLinkedList.push("Mike");
-myLinkedList.push("Harry");
-myLinkedList.push("Jenny");
-let popValue = myLinkedList.pop();
-// console.log('popValue', popValue)
-// console.log(
-//     util.inspect(
-//         JSON.parse(JSON.stringify(myLinkedList)),
-//         false,
-//         null,
-//         true /* enable colors */
-//     )
-// );
-
-let myLinkedList_2 = new LinkedList();
-myLinkedList_2.push("Mike");
-myLinkedList_2.push("Harry");
-myLinkedList_2.push("Jenny");
-let shiftValue = myLinkedList_2.shift();
-// console.log('shiftValue', shiftValue)
-// console.log(
-//     util.inspect(
-//         JSON.parse(JSON.stringify(myLinkedList_2)),
-//         false,
-//         null,
-//         true /* enable colors */
-//     )
-// );
-
-let myLinkedList_3 = new LinkedList();
-myLinkedList_3.push("Harry");
-myLinkedList_3.push("Jenny");
-let unShiftValue = myLinkedList_3.unShift("Mike");
-// console.log("unShiftValue", unShiftValue);
-// console.log(
-//   util.inspect(
-//     JSON.parse(JSON.stringify(myLinkedList_3)),
-//     false,
-//     null,
-//     true /* enable colors */
-//   )
-// );
-
-let myLinkedList_4 = new LinkedList();
-myLinkedList_4.push("Mike");
-myLinkedList_4.push("Harry");
-myLinkedList_4.push("Jenny");
-myLinkedList_4.insertAt(0, "Rayne");
-// console.log(
-//   util.inspect(
-//     JSON.parse(JSON.stringify(myLinkedList_4)),
-//     false,
-//     null,
-//     true /* enable colors */
-//   )
-// );
-
-let myLinkedList_5 = new LinkedList();
-myLinkedList_5.push("Mike");
-myLinkedList_5.push("Harry");
-myLinkedList_5.push("Jenny");
-myLinkedList_5.removeAt(1);
-// console.log(
-//   util.inspect(
-//     JSON.parse(JSON.stringify(myLinkedList_5)),
-//     false,
-//     null,
-//     true /* enable colors */
-//   )
-// );
-
-let myLinkedList_6 = new LinkedList();
-myLinkedList_6.push("Mike");
-myLinkedList_6.push("Harry");
-myLinkedList_6.push("Jenny");
-myLinkedList_6.get(1);
-console.log(myLinkedList_6.get(0));
-
-// extra => object call by reference
-
-const obj_1 = {
-  value: 1,
-  next: {
-    value: 2,
-    next: null,
-  },
-};
-
-let obj_1_var = obj_1;
-
-obj_1_var.next = null;
-
-// console.log("obj_1", obj_1);
-
-const obj_2 = {
-  value: 1,
-  next: {
-    value: 2,
-    next: null,
-  },
-};
-
-let obj_2_var = obj_2;
-
-obj_2.next = null;
-
-// console.log("obj_2_var", obj_2_var);
+module.exports = { LinkedList };
