@@ -1,3 +1,7 @@
+// the function that calls itselft.
+// Recursion is using a data structure called "stack". When we are calling a function inside another function, we are on the call stack.
+// Recursion is also a mathematical relation in sequences.
+
 function inception() {
   console.log("I am recursive");
   inception();
@@ -7,7 +11,7 @@ function inception() {
 
 let counter = 0;
 function recursion() {
-  console.log("counter", counter);
+  // console.log("counter", counter);
   if (counter > 3) return "done";
   counter++;
   recursion();
@@ -26,7 +30,7 @@ function returnRecursion() {
   return returnRecursion();
 }
 
-console.log("returnRecursion()", returnRecursion());
+// console.log("returnRecursion()", returnRecursion());
 // 同執行 returnRecursion(returnRecursion(returnRecursion(returnRecursion(returnRecursion()))))
 // 結果為 => returnRecursion(returnRecursion(returnRecursion(returnRecursion('done'))))
 // returnRecursion('done') 回傳最後一次 returnRecursion() 的值 => 所以回傳值為 'done'
@@ -54,8 +58,8 @@ const factorial_loop = (number) => {
   return n;
 };
 
-console.log("factorial_recursive(5)", factorial_recursive(5));
-console.log("factorial_loop(5)", factorial_loop(5));
+// console.log("factorial_recursive(5)", factorial_recursive(5));
+// console.log("factorial_loop(5)", factorial_loop(5));
 
 // 費氏數列
 
@@ -76,5 +80,28 @@ const fibonacci_loop = (step) => {
   return arr[step];
 }; // time complexity O(n)
 
-console.log("fibonacci_recursive(3)", fibonacci_recursive(3));
-console.log("fibonacci_loop(3)", fibonacci_loop(3));
+// console.log("fibonacci_recursive(3)", fibonacci_recursive(3));
+// console.log("fibonacci_loop(3)", fibonacci_loop(3));
+
+// array of arrays
+// write a function collects all value in an array of arrays and return an array of values collected.
+
+function collect(arr) {
+  let result = [];
+
+  function helper(arr2) {
+    for (let i = 0; i < arr2.length; i++) {
+      if (Array.isArray(arr2[i])) {
+        helper(arr2[i]);
+      } else {
+        result.push(arr2[i]);
+      }
+    }
+  }
+  helper(arr);
+
+  return result;
+}
+
+const arr = [[[["a", [["b", ["c"]], ["d"]]], [["e"]], [[["f", "g", "h"]]]]]];
+console.log("collect(arr)", collect(arr));
