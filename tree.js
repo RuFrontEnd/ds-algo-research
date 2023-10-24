@@ -35,9 +35,10 @@ const newNode = new Node(1); // { left: null, right: null, value: value }
 class BinarySearchTree {
   constructor() {
     this.root = null;
+    this.isInverting = false
   }
 
-  treeInsert(node) {
+  insert(node) {
     let y = null;
     let x = this.root;
 
@@ -57,28 +58,17 @@ class BinarySearchTree {
     } else {
       y.right = node
     }
-
   }
-
 }
 
 let bst = new BinarySearchTree();
-bst.treeInsert(new Node(1))
-bst.treeInsert(new Node(2))
-bst.treeInsert(new Node(3))
-bst.treeInsert(new Node(4))
-bst.treeInsert(new Node(5))
-
-console.log(
-  util.inspect(
-    JSON.parse(JSON.stringify(bst)),
-    false,
-    null,
-    true /* enable colors */
-  )
-);
-
-bst.treeInsert(new Node(5))
+bst.insert(new Node(15))
+bst.insert(new Node(6))
+bst.insert(new Node(5))
+bst.insert(new Node(1))
+bst.insert(new Node(13))
+bst.insert(new Node(-7))
+bst.insert(new Node(3))
 
 console.log(
   util.inspect(
