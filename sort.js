@@ -1,38 +1,27 @@
 // Buble Sort
+// compare adjecent elements and swaps them if they are in the wrong order.
 
 const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 
-const bubbleSort = (array) => {
-  const sort = (array) => {
-    const items = [...array];
-
-    let passCount = 0;
-
-    for (i = 0; i < items.length - 2; i++) {
-      if (items[i + 1] > items[i]) {
-        passCount += 1;
+// O(N^2)
+function bubbleSort_loop(arr) {
+  let step = 0;
+  for (let i = 0; i <= arr.length - 2; i++) {
+    for (let j = arr.length - 1; j >= i + 1; j--) {
+      if (arr[j] < arr[j - 1]) {
+        // swap arr[j] and arr[j - 1]
+        let temp = arr[j];
+        arr[j] = arr[j - 1];
+        arr[j - 1] = temp;
+        step++;
       }
     }
+  }
+  console.log("It takes " + step + " steps to complete.");
+  console.log(arr);
+}
 
-    let isPass = passCount === items.length - 1;
-
-    if (isPass) return items;
-
-    for (i = 0; i < items.length - 1; i++) {
-      if (items[i] > items[i + 1]) {
-        const temp = items[i];
-        items[i] = items[i + 1];
-        items[i + 1] = temp;
-      }
-    }
-
-    return sort(items);
-  };
-
-  return sort(array);
-};
-
-// console.log(bubbleSort(numbers));
+// console.log(bubbleSort_loop(numbers));
 
 // Selection Sort
 
@@ -59,6 +48,30 @@ const selectionSort = (nums) => {
 
 // console.log(selectionSort(numbers));
 
+// insertion sort
+// worst O(N^2)
+// best O(N)
+// average O(N^2)
+// Keeping inserting a new value into a sorted array.
+// Insert it to the correct spot so the sorted array remains sorted.
+const insertionSort = (arr) => {
+  for (let j = 1; j <= arr.length - 1; j++) { // j is arr index
+    let key = arr[j]
+    let i = j - 1
+    while (i >= 0 && arr[i] > key) {
+      arr[i + 1] = arr[i]
+      i -= 1
+    }
+    arr[i + 1] = key
+  }
+
+  return arr
+}
+
+console.log(insertionSort([14, -4, 17, 6, 22, 1, -5]))
+//             i    j
+//                  start from here
+
 // Merge Sort
 
 const merge = (left, right) => {
@@ -81,7 +94,5 @@ const mergeSort = (nums) => {
 
   return merge(mergeSort(left), mergeSort(right));
 };
-
-
 
 // console.log(mergeSort(numbers));
