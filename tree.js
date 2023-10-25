@@ -1,4 +1,12 @@
 const util = require("util");
+// tree is a graph without a loop.
+// tree must have one and only one root.
+
+// tree travesal
+// there are two tree traversal ways
+// Breadth-First Tree Traversal
+// Depth-First Tree Traversal(pre-order / in-order / post-order)
+
 // binary tree => each node can only have zero or one or two tree node
 
 // level 0: 2^0 = 1;
@@ -49,7 +57,8 @@ class BinarySearchTree {
         // left
         if (value < currentNode.value) {
           // 新值比當前節點值還小
-          if (!currentNode.left) { // 左邊已經沒有節點的話
+          if (!currentNode.left) {
+            // 左邊已經沒有節點的話
             currentNode.left = newNode; // 新增新節點至左邊
             return this; // stop whie loop & 回傳整顆樹
           }
@@ -59,7 +68,8 @@ class BinarySearchTree {
         // right
         if (value >= currentNode.value) {
           // 新值比當前節點值還大
-          if (!currentNode.right) { // 右邊已經沒有節點的話
+          if (!currentNode.right) {
+            // 右邊已經沒有節點的話
             currentNode.right = newNode; // 新增新節點至右邊
             return this; // stop whie loop & 回傳整顆樹
           }
