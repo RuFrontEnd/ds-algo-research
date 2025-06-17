@@ -1,5 +1,9 @@
 const util = require("util");
 
+// a graph data structure consists of a finite set of vertices(also called nodes or points).
+// lines between nodes are known as edges(also called links or lines), directed graph are also known as arrows.
+
+
 // three ways to represent graph
 // Edge list
 const graph_edge = [
