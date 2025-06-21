@@ -3,7 +3,6 @@ const util = require("util");
 // a graph data structure consists of a finite set of vertices(also called nodes or points).
 // lines between nodes are known as edges(also called links or lines), directed graph are also known as arrows.
 
-
 // three ways to represent graph
 // Edge list
 const graph_edge = [
@@ -83,5 +82,73 @@ graph_1.addEdge("1", "0");
 graph_1.addEdge("0", "2");
 graph_1.addEdge("6", "5");
 
-console.log("graph_1", graph_1);
-console.log("graph_1.showConnections();", graph_1.showConnections());
+// console.log("graph_1", graph_1);
+// console.log("graph_1.showConnections();", graph_1.showConnections());
+
+// find shortest path by BFS
+function bfs(graph) {
+  const queue = [0];            // 正確起點是節點 0
+  const visited = new Set([0]); // 已拜訪節點
+  let level = 0;                // 表示第幾層（擴散次數）
+
+  while (queue.length > 0) {
+    console.log('---');
+    console.log('level', level);
+    console.log('queue', queue);
+
+    const size = queue.length;  // 固定這層有幾個節點
+    console.log('size', size);
+
+    for (let i = 0; i < size; i++) {
+      const node = queue.shift();  // 處理當層的節點
+      console.log('node', node);
+
+      for (const neighbor of graph[node]) {
+        if (!visited.has(neighbor)) {
+          queue.push(neighbor);
+          visited.add(neighbor);
+        }
+      }
+    }
+
+    level++;
+  }
+}
+
+console.log(bfs([[1, 2], [0, 2, 3], [0, 1], [1]]));
+
+// find shortest path by BFS
+function shortestPath(graph, start, end) {
+  const queue = [start];
+  const visited = new Set([start]);
+  let level = 0;
+
+  while (queue.length > 0) {
+    console.log('---')
+    console.log('level', level)
+    console.log('queue', queue)
+    const size = queue.length; // 固定當前層節點數
+    console.log('size', size)
+
+    for (let i = 0; i < size; i++) {
+      const node = queue.shift();
+      console.log('node', node)
+
+      if (node === end) return level;
+
+      for (const neighbor of graph[node]) {
+        if (!visited.has(neighbor)) {
+          queue.push(neighbor);
+          visited.add(neighbor);
+        }
+      }
+    }
+
+    level++;
+  }
+
+  // 無法到達目標
+  return -1;
+}
+
+// console.log(shortestPath([[1, 2], [0, 2, 3], [0, 1], [1]], 0, 3));
