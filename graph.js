@@ -116,39 +116,3 @@ function bfs(graph) {
 }
 
 console.log(bfs([[1, 2], [0, 2, 3], [0, 1], [1]]));
-
-// find shortest path by BFS
-function shortestPath(graph, start, end) {
-  const queue = [start];
-  const visited = new Set([start]);
-  let level = 0;
-
-  while (queue.length > 0) {
-    console.log('---')
-    console.log('level', level)
-    console.log('queue', queue)
-    const size = queue.length; // 固定當前層節點數
-    console.log('size', size)
-
-    for (let i = 0; i < size; i++) {
-      const node = queue.shift();
-      console.log('node', node)
-
-      if (node === end) return level;
-
-      for (const neighbor of graph[node]) {
-        if (!visited.has(neighbor)) {
-          queue.push(neighbor);
-          visited.add(neighbor);
-        }
-      }
-    }
-
-    level++;
-  }
-
-  // 無法到達目標
-  return -1;
-}
-
-// console.log(shortestPath([[1, 2], [0, 2, 3], [0, 1], [1]], 0, 3));
