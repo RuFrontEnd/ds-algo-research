@@ -29,7 +29,7 @@ var countServers = function (grid) {
 };
 
 // 思路
-// 1. 先去計算那一行或那一列到底有沒有連結的電腦
-// 2. 要計算的列或行再算電腦的數量就好
+// 1. 先去計算那一行或那一列到底有沒有電腦連結
+// 2. 有連結的列或行再算電腦的數量就好
 // 3. 使用 Object 來計會比使用 Array 來的慢，因為 Object 要多一步 hash function 映射
 // 4. 使用 forEach 會比 for 來得慢，因為呼叫 function 的成本還是比較高
