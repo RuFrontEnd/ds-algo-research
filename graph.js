@@ -86,22 +86,22 @@ graph_1.addEdge("6", "5");
 // console.log("graph_1.showConnections();", graph_1.showConnections());
 
 // find shortest path by BFS
-function bfs(graph) {
-  const queue = [0];            // 正確起點是節點 0
-  const visited = new Set([0]); // 已拜訪節點
-  let level = 0;                // 表示第幾層（擴散次數）
+function bfs(graph, start) {
+  const queue = [start]; // 正確起點是節點 0
+  const visited = new Set([start]); // 已拜訪節點
+  let level = 0; // 表示第幾層（擴散次數）
 
   while (queue.length > 0) {
-    console.log('---');
-    console.log('level', level);
-    console.log('queue', queue);
+    console.log("---");
+    console.log("level", level);
+    console.log("queue", queue);
 
-    const size = queue.length;  // 固定這層有幾個節點
-    console.log('size', size);
+    const size = queue.length; // 固定這層有幾個節點
+    console.log("size", size);
 
     for (let i = 0; i < size; i++) {
-      const node = queue.shift();  // 處理當層的節點
-      console.log('node', node);
+      const node = queue.shift(); // 處理當層的節點
+      console.log("node", node);
 
       for (const neighbor of graph[node]) {
         if (!visited.has(neighbor)) {
@@ -115,4 +115,44 @@ function bfs(graph) {
   }
 }
 
-console.log(bfs([[1, 2], [0, 2, 3], [0, 1], [1]]));
+// console.log(bfs([[1, 2], [0, 2, 3], [0, 1], [1]], 0));
+
+function dfsRecursive(graph, node, visited = new Set()) {
+  if (visited.has(node)) return;
+  console.log('-----')
+
+  visited.add(node);
+  console.log('node', node); // 拜訪節點時的操作
+
+  for (const neighbor of graph[node]) {
+    dfsRecursive(graph, neighbor, visited);
+  }
+}
+
+console.log(dfsRecursive([[1, 2], [0, 2, 3], [0, 1], [1]], 0));
+
+function dfsIterative(graph, start) {
+  const visited = new Set();
+  const stack = [start];
+
+  while (stack.length > 0) {
+    console.log('-----')
+    console.log('stack', stack)
+    const node = stack.pop();
+
+    if (visited.has(node)) continue;
+
+    visited.add(node);
+    console.log('node', node); // 拜訪節點時的操作
+
+    // 將鄰居倒序放入 stack（因為 stack 是後進先出）
+    for (let i = graph[node].length - 1; i >= 0; i--) {
+      const neighbor = graph[node][i];
+      if (!visited.has(neighbor)) {
+        stack.push(neighbor);
+      }
+    }
+  }
+}
+
+// console.log(dfsIterative([[1, 2], [0, 2, 3], [0, 1], [1]], 0));
