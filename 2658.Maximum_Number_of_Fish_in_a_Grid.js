@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/description/
 /**
  * @param {number[][]} grid
  * @return {number}
@@ -44,5 +45,5 @@ var findMaxFish = function (grid) {
 
 console.log(findMaxFish([[0,2,1,0],[4,0,0,3],[1,0,0,4],[0,3,2,0]]))
 
-// 1. 對每一格 cell 用 BFS 去擴散
+// 1. 對每一格 cell 用 BFS 去做圖擴散
 // 2. 拜訪過就不用再走 BFS
