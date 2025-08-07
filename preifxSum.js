@@ -1,4 +1,4 @@
-// 2D prefix sum
+// 2D prefix sum: 表達二維陣列特定區塊中的前綴值
 function prefixSum2D(matrix) {
   const m = matrix.length;
   const n = matrix[0].length;
