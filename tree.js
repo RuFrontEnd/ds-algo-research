@@ -101,29 +101,31 @@ class BinarySearchTree {
     let currentNode = this.root;
     let list = [];
     let queue = [];
+    let depth = 0;
+  
+    if (!currentNode) return { list, depth };
+  
     queue.push(currentNode);
-
+  
     while (queue.length > 0) {
-      currentNode = queue.shift();
-      list.push(currentNode.value);
-      if (currentNode.left) {
-        queue.push(currentNode.left);
+      const levelSize = queue.length; // 當前層有幾個節點
+  
+      for (let i = 0; i < levelSize; i++) {
+        currentNode = queue.shift();
+        list.push(currentNode.value);
+  
+        if (currentNode.left) {
+          queue.push(currentNode.left);
+        }
+        if (currentNode.right) {
+          queue.push(currentNode.right);
+        }
       }
-      if (currentNode.right) {
-        queue.push(currentNode.right);
-      }
-
-      // console.log(
-      //   util.inspect(
-      //     JSON.parse(JSON.stringify(queue)),
-      //     false,
-      //     null,
-      //     true /* enable colors */
-      //   )
-      // );
+  
+      depth++; // 每跑完一層就加一
     }
-
-    return list;
+  
+    return { list, depth };
   }
 }
 
