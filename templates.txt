@@ -1,0 +1,334 @@
+// Backtracking - Aggregation
+function dfs(startIndex, target) {
+  if (isLeaf(startIndex)) {
+      return 1
+  }
+
+  
+  let ans = initialValue;
+  for (const edge of getEdges(startIndex, [...additional states])) {
+      if (additional states) {
+          update([...additional states]);
+      }
+      ans = aggregate(ans, dfs(startIndex + edge.length(), [...additional states])
+      if (additional states) {
+          revert([...additional states]);
+      }
+  }
+  return ans;
+}
+
+
+// Backtracking - Basic
+function dfs(startIndex, path, res, [...additional states]) {
+    if (isLeaf(path)) {
+        res.push(new Array(path));
+        return;
+    }
+    for (const edge of getEdges(startIndex, [...additional states])) {
+        path.push(choice);
+        if (...additional states) update(...additional states)
+        dfs(startIndex + edge.length, path, res, [...addtional states]);
+        path.pop();
+        // revert(...additional states) if necessary, e.g. permutations
+    }
+}
+
+
+// Binary Search
+function dfs(startIndex, path, res, [...additional states]) {
+    if (isLeaf(path)) {
+        res.push(new Array(path));
+        return;
+    }
+    for (const edge of getEdges(startIndex, [...additional states])) {
+        path.push(choice);
+        if (...additional states) update(...additional states)
+        dfs(startIndex + edge.length, path, res, [...addtional states]);
+        path.pop();
+        // revert(...additional states) if necessary, e.g. permutations
+    }
+}
+
+
+// BFS on Tree
+function bfs(root) {
+    let queue = [root];
+    while (queue.length > 0) {
+        const node = queue.shift();
+        for (const child of node.children) {
+            if (isGoal(child)) {
+                return FOUND(child);
+            }
+            queue.push(child);
+        }
+    }
+    return NOT_FOUND;
+}
+
+// DFS on Tree
+function dfs(root, target) {
+    if (!root) return null;
+    if (root.val == target) return root;
+    left = dfs(root.left);
+    if (left != null) return left;
+    right = dfs(root.right);
+    return right;
+}
+
+
+// BFS on Graphs
+function bfs(root) {
+    let queue = [root];
+    let visited = new Set([root]);
+    while (queue.length > 0) {
+        const node = queue.shift();
+        for (const neighbor of get_neighbors(node)) {
+            if (visited.has(neighbor)) continue;
+            queue.push(neighbor);
+            visited.add(neighbor);
+        }
+    }
+}
+
+
+// DFS on Graphs
+function dfs(root, visited) {
+    for (const neighbor of get_neighbors(root)) {
+        if (visited.has(neighbor)) continue;
+        visited.add(neighbor);
+        dfs(neighbor, visited);
+    }
+}
+
+
+// BFS on Matrix
+num_rows = grid.length;
+num_cols = grid[0].length;
+
+function get_neighbors(coord) {
+    const [row, col] = coord;
+    const delta_row = [-1, 0, 1, 0];
+    const delta_col = [0, 1, 0, -1];
+    const res = [];
+    for (let i = 0; i < delta_row.length; i++) {
+        neighbor_row = row + delta_row[i];
+        neighbor_col = col + delta_col[i];
+        if (0 <= neighbor_row && neighbor_row < num_rows &&
+          0 <= neighbor_col && neighbor_col < num_cols) {
+              res.push([neighbor_row, neighbor_col]);
+          }
+    }
+    return res;
+}
+
+function bfs(starting_node) {
+    const queue = [starting_node];
+    const visited = new Set([starting_node]);
+    while (queue.length > 0) {
+        const node = queue.shift();
+        for (const neighbor of get_neighbors(node)) {
+            if (visited.has(neighbor)) continue;
+            // Do stuff with the node if required
+            // ...
+            queue.push(neighbor);
+            visited.add(neighbor);
+        }
+    }
+}
+
+
+// Mono Stack
+function monoStack(insertEntries) {
+    const stack = [];
+    for (let entry of insertEntries) {
+        while (stack.length > 0 && stack[stack.length - 1] <= entry) {
+            stack.pop();
+            // Do something with the popped item here
+        }
+        stack.push(entry);
+    }
+}
+
+
+// Prefix Sum
+function buildPrefixSum(arr) {
+    const n = arr.length;
+    const prefixSum = new Array(n);
+    prefixSum[0] = arr[0];
+    for (let i = 1; i < n; i++) {
+        prefixSum[i] = prefixSum[i-1] + arr[i];
+    }
+    return prefixSum;
+}
+
+
+// Query sum of range [left, right] (inclusive)
+function queryRange(prefixSum, left, right) {
+    if (left === 0) {
+        return prefixSum[right];
+    }
+    return prefixSum[right] - prefixSum[left-1];
+}
+
+
+// Sliding Window(Fixed Size)
+function slidingWindowFixed(input, windowSize) {
+    var ans = window = input.slice(0, windowSize);
+    for (var right = windowSize; right < input.length; ++right) {
+        const left = right - windowSize;
+        remove input[left] from window
+        append input[right] to window
+        ans = optimal(ans, window);
+    }
+    return ans;
+}
+
+
+// Sliding Window Flexible - Longeset
+function slidingWindowFlexibleLongest(input) {
+    initialize window, ans
+    var left = 0;
+    for (var right = 0; right < input.length; ++right) {
+        append input[right] to window
+        while (invalid(window)) {
+            remove input[left] from window
+            ++left;
+        }
+        ans = Math.max(ans, window);       // window is guaranteed to be valid here
+    }
+    return ans;
+}
+
+
+// Sliding Window Flexible - Shortest
+function slidingWindowFlexibleShortest(input) {
+    initialize window, ans
+    var left = 0;
+    for (var right = 0; right < input.length; ++right) {
+        append input[right] to window
+        while (valid(window)) {
+            ans = Math.min(ans, window);   // window is guaranteed to be valid here
+            remove input[left] from window
+            ++left;
+        }
+    }
+    return ans;
+}
+
+
+// Topological Sort
+function findInDegree(graph) {
+    const inDegree = new Map();
+    for (let node of graph.keys()) {
+        inDegree.set(node, 0);
+    }
+    for (let node of graph.keys()) {
+        for (let neighbor of graph.get(node)) {
+            inDegree.set(neighbor, inDegree.get(neighbor) + 1);
+        }
+    }
+    return inDegree;
+}
+
+function topoSort(graph) {
+    const res = [];
+    const q = [];
+    const inDegree = findInDegree(graph);
+    for (let node of inDegree.keys()) {
+        if (inDegree.get(node) == 0) {
+            q.push(node);
+        }
+    }
+    while (q.length > 0) {
+        const node = q.shift();
+        res.push(node);
+        for (let neighbor of graph.get(node)) {
+            inDegree.set(neighbor, inDegree.get(neighbor) - 1);
+            if (inDegree.get(neighbor) == 0) {
+                q.push(neighbor);
+            }
+        }
+    }
+    return (graph.size === res.length) ? res : null;
+}
+
+
+// Trie
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.children = new Map();
+    }
+
+    insert(s, idx) {
+        // idx: index of the current character in s
+        if (idx !== s.length) {
+            if (this.children.has(s.charAt(idx))) {
+                this.children.get(s.charAt(idx)).insert(s, idx + 1);
+            } else {
+                this.children.set(s.charAt(idx), new Node(s.charAt(idx)));
+                this.children.get(s.charAt(idx)).insert(s, idx + 1);
+            }
+        }
+    }
+}
+
+
+// Two Pointers(Opposite Direction)
+function twoPointersOpposite(arr) {
+    let left = 0, right = arr.length - 1;
+    while (left < right) {
+        // Process current elements
+        const current = process(arr[left], arr[right]);
+        
+        // Update pointers based on condition
+        if (condition(arr[left], arr[right])) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+}
+
+
+// Two Pointers(Same Direction)
+function twoPointersSame(arr) {
+    let slow = 0, fast = 0;
+    while (fast < arr.length) {
+        // Process current elements
+        const current = process(arr[slow], arr[fast]);
+        
+        // Update pointers based on condition
+        if (condition(arr[slow], arr[fast])) {
+            slow++;
+        }
+        
+        // Fast pointer always moves forward
+        fast++;
+    }
+}
+
+
+// Union Find
+class UnionFind {
+    constructor() {
+        this.id = new Map();
+    }
+
+    find(x) {
+        let y = this.id.has(x) ? this.id.get(x) : x;
+        if (y != x) {
+            y = this.find(y);
+            this.id.set(x, y);
+        }
+        return y;
+    }
+
+    union(x, y) {
+        this.id.set(this.find(x), this.find(y));
+    }
+}
+
+
+
